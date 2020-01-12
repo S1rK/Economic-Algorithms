@@ -77,16 +77,31 @@ def exchange_shifts(workers: List[Worker]):
 
 
 def test():
-	print("-----------TESTING-----------")
+	print("-----------FIRST TEST-----------")
 	# from https://en.wikipedia.org/wiki/Top_trading_cycle
 	a = Worker("Alice", 1, [3, 2, 4, 1])
 	b = Worker("Bob", 2, [3, 5, 6, 1])
 	c = Worker("Chloe", 3, [3, 1, 2, 4])
 	d = Worker("David", 4, [2, 5, 6, 4])
-	d.name = 'David'
 	e = Worker("Edward", 5, [1, 3, 2])
 	f = Worker("Finn", 6, [2, 4, 5, 6])
 	workers = [a, b, c, d, e, f]
+
+	# print workers
+	print("THE WORKERS:")
+	for worker in workers:
+		print(f"{worker.name}: current shift={worker.current_shift}, pref={worker.preferences}")
+
+	print("THE EXCHANGES:")
+	exchange_shifts(workers)
+
+	print("\n\n-----------SECOND TEST-----------")
+	# from
+	a = Worker("A", 1, [3, 2, 4, 1])
+	b = Worker("G", 2, [2, 1, 4, 3])
+	c = Worker("R", 3, [1, 2, 4, 3])
+	d = Worker("S", 4, [4, 3, 2, 1])
+	workers = [a, b, c, d]
 
 	# print workers
 	print("THE WORKERS:")

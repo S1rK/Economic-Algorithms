@@ -9,6 +9,11 @@ from typing import List, Tuple
 
 
 def find_max_matches_recursive(graph: nx.DiGraph) -> List[List[int]]:
+	"""
+	A recursive function that finds cycles with a length of 2 or 3, such that the sum of the cycle's lengths is max.
+	:param graph: A nx.DiGraph (directed graph).
+	:return: The cycles.
+	"""
 	# get all the cycles in the graph
 	cycles = list(nx.simple_cycles(graph))
 
@@ -42,6 +47,11 @@ def find_max_matches_recursive(graph: nx.DiGraph) -> List[List[int]]:
 
 
 def find_max_matches(compatible: List[List[bool]]):
+	"""
+	Finds cycles with a length of 2 or 3, such that the sum of the cycle's lengths is max, and print them
+	:param compatible: A matrix such that if compatible[i,j]=True then i can donate a kidney to j.
+	:return: Nothing, void. Prints the cycles.
+	"""
 	# create the graph from the matrix
 	graph = nx.DiGraph()
 	for i in range(len(compatible)):
@@ -62,8 +72,10 @@ def find_max_matches(compatible: List[List[bool]]):
 
 
 def test():
+	"""Testing the find_max_matches function"""
+	print("-----------TESTING-----------")
 	# create matrix
-	comp = [[False for _ in range(6)] for _ in range(6)]
+	comp = [[False for _ in range(7)] for _ in range(7)]
 	# 0->1
 	comp[0][1] = True
 	# 2->0
@@ -72,13 +84,23 @@ def test():
 	comp[1][3] = True
 	# 1->2
 	comp[1][2] = True
-	# 4->2
-	comp[4][2] = True
-	# 3->4
-	comp[3][4] = True
+	# 5->4
+	comp[5][4] = True
+	# 4->3
+	comp[4][3] = True
 	# 3->5
 	comp[3][5] = True
+	# 5->6
+	comp[5][6] = True
+	# 6->5
+	comp[6][5] = True
 
+	print("THE GRAPH:")
+	for i in range(len(comp)):
+		for j in range(len(comp[i])):
+			if comp[i][j]:
+				print(f"{i}->{j}")
+	print("THE CYCLES:")
 	find_max_matches(comp)
 
 
